@@ -15,8 +15,6 @@ export default async function DashboardPage() {
   const userName = profile?.name || "Estimator";
   const sub = await getUserSubscription(userId);
 
-  const isDev = process.env.NEXT_PUBLIC_DEVELOPMENT_MODE === "true";
-
   let estimates: EstimateWithRelations[] = [];
   let dbError: string | null = null;
 
@@ -59,14 +57,10 @@ export default async function DashboardPage() {
   }
 
   // Calculate subscription stats
-  const currentPlan = isDev ? "Development Mode" : (sub?.current_plan || "free");
+  const currentPlan = sub?.current_plan || "free";
   const monthlyUsage = sub?.monthly_usage || 0;
   const monthlyLimit = sub?.monthly_estimate_limit ?? 2;
-  const isUnlimited = isDev || currentPlan === "enterprise";
-  
-  const remainingEstimates = isUnlimited 
-    ? "Unlimited" 
-    : String(Math.max(0, monthlyLimit - monthlyUsage));
+  const remainingAnalyses = Math.max(0, monthlyLimit - monthlyUsage);
 
   const hasSubscription = Boolean(sub?.stripe_customer_id);
 
@@ -93,15 +87,6 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {isDev && (
-        <div className="rounded-xl border border-orange-200 bg-orange-50 p-4 text-sm text-orange-800 shadow-sm flex items-center gap-2">
-          <svg className="h-5 w-5 text-orange-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span className="font-semibold">Development Mode – All Premium Features Enabled</span>
-        </div>
-      )}
-
       {dbError && (
         <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800">
           <span className="font-semibold">Database Error:</span> {dbError}
@@ -117,15 +102,15 @@ export default async function DashboardPage() {
           </p>
         </div>
         <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
-          <p className="text-sm font-medium text-zinc-500">Monthly Usage</p>
+          <p className="text-sm font-medium text-zinc-500">Used Analyses</p>
           <p className="mt-1.5 text-2xl font-black text-zinc-900">
-            {isUnlimited ? `${monthlyUsage} / ∞` : `${monthlyUsage} / ${monthlyLimit}`}
+            {monthlyUsage} / {monthlyLimit}
           </p>
         </div>
         <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
-          <p className="text-sm font-medium text-zinc-500">Remaining Estimates</p>
+          <p className="text-sm font-medium text-zinc-500">Remaining Analyses</p>
           <p className="mt-1.5 text-2xl font-black text-zinc-900">
-            {remainingEstimates}
+            {remainingAnalyses}
           </p>
         </div>
         <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">

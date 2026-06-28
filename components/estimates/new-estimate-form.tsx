@@ -1,11 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export function NewEstimateForm() {
+export function NewEstimateForm({
+  allowed = true,
+  used = 0,
+  limit = 2,
+}: {
+  allowed?: boolean;
+  used?: number;
+  limit?: number;
+}) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!allowed) {
+      const timer = setTimeout(() => {
+        router.push("/pricing");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [allowed, router]);
   const [error, setError] = useState<string | null>(null);
   const [quality, setQuality] = useState<"Economy" | "Standard" | "Premium">("Standard");
 
@@ -213,9 +230,15 @@ export function NewEstimateForm() {
         </div>
       )}
 
+      {!allowed && (
+        <div className="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800 font-medium">
+          Upgrade Plan: You have reached your limit of {limit} free blueprint analyses. Redirecting you to the billing page to upgrade...
+        </div>
+      )}
+
       <button
         type="submit"
-        disabled={loading}
+        disabled={loading || !allowed}
         className="w-full rounded-xl bg-orange-600 py-3.5 text-sm font-bold text-white shadow-sm hover:bg-orange-700 disabled:opacity-60 transition-colors"
       >
         {loading ? (
@@ -224,7 +247,7 @@ export function NewEstimateForm() {
             Uploading & Analyzing Blueprint...
           </span>
         ) : (
-          "Generate AI Estimate"
+          "Analyze Blueprint"
         )}
       </button>
     </form>

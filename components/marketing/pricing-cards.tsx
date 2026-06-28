@@ -47,7 +47,7 @@ export function PricingCards() {
         "15 AI Estimates per month",
         "Priority AI Processing",
         "Email Support",
-        "Unlimited Estimate History"
+        "Full Estimate History"
       ],
       buttonText: "Upgrade to Starter",
       badge: null,
@@ -69,8 +69,8 @@ export function PricingCards() {
       id: "enterprise" as const,
       ...PLAN_LIMITS.enterprise,
       features: [
-        "Unlimited AI Estimates",
-        "Unlimited Blueprint Analysis",
+        "999,999 AI Estimates",
+        "999,999 Blueprint Analyses",
         "Fastest AI Processing",
         "Highest Priority Queue",
         "Premium AI Recommendations",
@@ -120,7 +120,7 @@ export function PricingCards() {
                 )}
               </p>
               <p className={`mt-1.5 text-xs font-medium ${isEnterprise ? "text-zinc-400" : "text-zinc-500"}`}>
-                {plan.id === "enterprise" ? "Unlimited" : `${plan.limit} estimates / month`}
+                {plan.id === "enterprise" ? "999,999 estimates / month" : `${plan.limit} estimates / month`}
               </p>
 
               <ul className="mt-6 space-y-3.5 text-sm">

@@ -120,11 +120,6 @@ export function canCreateEstimate(userId: string): {
   limit: number;
   plan: PlanType;
 } {
-  // If Development Mode is enabled, bypass all limits
-  if (process.env.NEXT_PUBLIC_DEVELOPMENT_MODE === "true") {
-    return { allowed: true, used: 0, limit: 999999, plan: "enterprise" };
-  }
-
   const sub = getLocalSubscription(userId);
   if (!sub) {
     return { allowed: true, used: 0, limit: PLAN_LIMITS.free.limit, plan: "free" };

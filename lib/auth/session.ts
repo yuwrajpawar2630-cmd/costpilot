@@ -66,11 +66,6 @@ export async function checkEstimateUsage(userId: string): Promise<{
   limit: number;
   plan: PlanType;
 }> {
-  // If Development Mode is enabled, bypass all checks
-  if (process.env.NEXT_PUBLIC_DEVELOPMENT_MODE === "true") {
-    return { allowed: true, used: 0, limit: 999999, plan: "enterprise" };
-  }
-
   if (!isDemoMode()) {
     const supabase = await createClient();
     if (supabase) {
@@ -84,9 +79,7 @@ export async function checkEstimateUsage(userId: string): Promise<{
         const plan = sub.current_plan as PlanType;
         const limit = sub.monthly_estimate_limit;
         const usage = sub.monthly_usage;
-        
-        // Enterprise has unlimited estimates
-        const allowed = plan === "enterprise" || usage < limit;
+        const allowed = usage < limit;
         
         return {
           allowed,
