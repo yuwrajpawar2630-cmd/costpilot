@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     };
 
     const profile = (await getUserProfile(userId)) ?? (await getUserProfile(DEMO_USER_ID));
-    const origin = request.headers.get("origin") ?? "http://localhost:3000";
+    const origin = request.headers.get("origin") ?? (process.env.NODE_ENV === "production" ? "https://costpilotsai.com" : "http://localhost:3000");
 
     let customerId = profile?.stripe_customer_id || null;
 

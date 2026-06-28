@@ -32,10 +32,23 @@ export async function GET(request: Request) {
         const isLocalEnv = process.env.NODE_ENV === "development";
         if (isLocalEnv) {
           return NextResponse.redirect(`${origin}${next}`);
-        } else if (forwardedHost) {
-          return NextResponse.redirect(`https://${forwardedHost}${next}`);
         } else {
-          return NextResponse.redirect(`${origin}${next}`);
+          // Sanitization: Ensure we do not redirect to localhost, 127.0.0.1, or 0.0.0.0 in production
+          const isLocalhost = (host: string) => {
+            const h = host.toLowerCase();
+            return h.includes("localhost") || h.includes("127.0.0.1") || h.includes("0.0.0.0");
+          };
+
+          let targetOrigin = "https://costpilotsai.com";
+
+          if (forwardedHost && !isLocalhost(forwardedHost)) {
+            targetOrigin = `https://${forwardedHost}`;
+          } else if (origin && !isLocalhost(origin)) {
+            targetOrigin = origin;
+          }
+
+          console.log(`Production Auth Callback redirecting to: ${targetOrigin}${next}`);
+          return NextResponse.redirect(`${targetOrigin}${next}`);
         }
       }
     }

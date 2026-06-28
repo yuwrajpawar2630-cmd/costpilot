@@ -4,7 +4,7 @@ import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import { enterDemo } from "@/app/actions/auth";
+import { enterDemo, isCustomEmailConfigured, signUpWithCustomEmail } from "@/app/actions/auth";
 
 function SignupForm() {
   const router = useRouter();
@@ -44,6 +44,23 @@ function SignupForm() {
     setLoading(true);
 
     try {
+      // Check if custom email sending is configured (programmatic SMTP/Resend/SendGrid)
+      const customEmailEnabled = await isCustomEmailConfigured();
+      if (customEmailEnabled) {
+        console.log("Custom email provider is configured. Routing signup through server action...");
+        const res = await signUpWithCustomEmail({ email, password, name });
+        if (res.error) {
+          console.error("Custom email signup error:", res.error);
+          setError(res.error);
+          setLoading(false);
+          return;
+        }
+        setSuccess(true);
+        setLoading(false);
+        return;
+      }
+
+      // Fallback to standard Supabase client-side signUp
       const supabase = createClient();
       if (!supabase) {
         setError("Supabase is not configured properly.");
@@ -51,11 +68,12 @@ function SignupForm() {
         return;
       }
 
-      // Call signUp with user metadata (for user's name)
+      // Call signUp with user metadata and emailRedirectTo
       const { data, error: signupError } = await supabase.auth.signUp({
         email,
         password,
         options: {
+          emailRedirectTo: "https://costpilotsai.com/auth/callback",
           data: {
             name: name,
             full_name: name,
@@ -63,7 +81,15 @@ function SignupForm() {
         },
       });
 
+      // Log the exact response from Supabase
+      console.log("Supabase client signUp response:", {
+        user: data?.user ? { id: data.user.id, email: data.user.email } : null,
+        session: data?.session ? "active" : "none",
+        error: signupError,
+      });
+
       if (signupError) {
+        console.error("Supabase signup error:", signupError);
         setError(signupError.message);
         setLoading(false);
         return;
@@ -91,6 +117,7 @@ function SignupForm() {
         setSuccess(true);
       }
     } catch (err) {
+      console.error("Signup error in catch block:", err);
       const message = err instanceof Error ? err.message : "An unexpected error occurred during signup.";
       setError(message);
     } finally {
