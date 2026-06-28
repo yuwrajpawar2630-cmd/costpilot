@@ -1,0 +1,60 @@
+{
+  "currency": "AUD",
+  "rates": {
+    "materials": {
+      "concrete": 210.00,
+      "steel": 1.70,
+      "bricks": 0.85,
+      "cement": 0.22,
+      "sand": 42.00,
+      "tiles": 35.00,
+      "paint": 11.50,
+      "drywall": 20.00,
+      "electrical": 65.00,
+      "plumbing": 195.00
+    },
+    "labor": {
+      "mason": 55.00,
+      "carpenter": 52.00,
+      "electrician": 62.00,
+      "plumber": 66.00,
+      "painter": 42.00,
+      "helpers": 30.00
+    },
+    "coefficients": {
+      "concrete_volume_factor": 0.12,
+      "steel_density_factor": 75,
+      "bricks_per_m2": 50,
+      "cement_per_m3_concrete": 300,
+      "cement_per_brick": 0.5,
+      "sand_per_m3_concrete": 0.45,
+      "sand_per_brick": 0.001,
+      "tiles_area_factor": 0.25,
+      "paint_coverage_factor": 8,
+      "drywall_wall_factor": 2,
+      
+      "mason_concrete_hours_per_m3": 1.5,
+      "mason_bricks_hours_per_brick": 0.05,
+      "mason_tiles_hours_per_m2": 0.8,
+      
+      "carpenter_steel_hours_per_kg": 0.04,
+      "carpenter_drywall_hours_per_m2": 0.3,
+      "carpenter_roof_hours_per_m2": 0.8,
+      
+      "electrician_hours_per_fixture": 1.5,
+      "plumber_hours_per_fixture": 3.5,
+      "painter_hours_per_liter": 0.5,
+      
+      "helpers_concrete_hours_per_m3": 1.0,
+      "helpers_bricks_hours_per_brick": 0.03,
+      "helpers_tiles_hours_per_m2": 0.4,
+      "helpers_drywall_hours_per_m2": 0.2
+    },
+    "equipment_daily_rate": 110.00,
+    "markups": {
+      "overhead_rate": 0.10,
+      "contingency_rate": 0.05,
+      "tax_rate": 0.08
+    }
+  }
+}

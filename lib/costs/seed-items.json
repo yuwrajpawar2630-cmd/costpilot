@@ -1,0 +1,22 @@
+[
+  { "query": "foundation", "name": "Concrete strip foundation", "unit": "m3", "total_per_unit": 185, "labor_pct": 35, "material_pct": 60 },
+  { "query": "footing", "name": "Spread footings", "unit": "m3", "total_per_unit": 210, "labor_pct": 38, "material_pct": 55 },
+  { "query": "concrete slab", "name": "Concrete slab on grade", "unit": "m2", "total_per_unit": 42, "labor_pct": 40, "material_pct": 55 },
+  { "query": "concrete", "name": "Ready-mix concrete placement", "unit": "m3", "total_per_unit": 165, "labor_pct": 30, "material_pct": 65 },
+  { "query": "steel", "name": "Rebar reinforcement", "unit": "kg", "total_per_unit": 2.8, "labor_pct": 45, "material_pct": 50 },
+  { "query": "structural", "name": "Structural steel framing", "unit": "kg", "total_per_unit": 4.2, "labor_pct": 50, "material_pct": 45 },
+  { "query": "roof", "name": "Asphalt shingle roofing", "unit": "m2", "total_per_unit": 38, "labor_pct": 45, "material_pct": 50 },
+  { "query": "shingle", "name": "Architectural shingles installed", "unit": "m2", "total_per_unit": 45, "labor_pct": 42, "material_pct": 52 },
+  { "query": "plumb", "name": "Residential plumbing rough-in", "unit": "ea", "total_per_unit": 8500, "labor_pct": 55, "material_pct": 40 },
+  { "query": "electrical", "name": "Residential electrical rough-in", "unit": "ea", "total_per_unit": 7200, "labor_pct": 58, "material_pct": 35 },
+  { "query": "wiring", "name": "Electrical wiring per circuit", "unit": "ea", "total_per_unit": 450, "labor_pct": 60, "material_pct": 35 },
+  { "query": "drywall", "name": "Drywall install and finish", "unit": "m2", "total_per_unit": 22, "labor_pct": 55, "material_pct": 40 },
+  { "query": "finish", "name": "Interior finishing labor", "unit": "m2", "total_per_unit": 18, "labor_pct": 65, "material_pct": 30 },
+  { "query": "paint", "name": "Interior painting", "unit": "m2", "total_per_unit": 12, "labor_pct": 60, "material_pct": 35 },
+  { "query": "floor", "name": "Hardwood flooring installed", "unit": "m2", "total_per_unit": 55, "labor_pct": 45, "material_pct": 50 },
+  { "query": "general", "name": "General construction labor", "unit": "hr", "total_per_unit": 65, "labor_pct": 85, "material_pct": 10 },
+  { "query": "framing", "name": "Wood frame wall construction", "unit": "m2", "total_per_unit": 48, "labor_pct": 50, "material_pct": 45 },
+  { "query": "insulation", "name": "Wall insulation batt", "unit": "m2", "total_per_unit": 15, "labor_pct": 40, "material_pct": 55 },
+  { "query": "window", "name": "Window installation", "unit": "ea", "total_per_unit": 650, "labor_pct": 35, "material_pct": 60 },
+  { "query": "door", "name": "Interior door installed", "unit": "ea", "total_per_unit": 380, "labor_pct": 40, "material_pct": 55 }
+]
