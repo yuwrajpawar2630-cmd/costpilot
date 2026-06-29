@@ -97,6 +97,7 @@ export function MarketingFooter() {
         </div>
         <div className="flex gap-8 text-sm text-zinc-600">
           <Link href="/privacy">Privacy</Link>
+          <Link href="/contact">Contact</Link>
           <Link href="/terms">Terms</Link>
           <Link href="/sample-report">Sample report</Link>
         </div>
