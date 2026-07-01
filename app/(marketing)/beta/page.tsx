@@ -1,4 +1,12 @@
 import { BetaSignupForm } from "@/components/marketing/beta-signup-form";
+import { getMetadata } from "@/lib/seo";
+
+export const metadata = getMetadata({
+  title: "Join the Beta Program — CostPilot AI",
+  description:
+    "Get early access to the latest AI construction estimating features. Join our beta program and help shape the future of contractor bidding.",
+  path: "/beta",
+});
 
 export default function BetaPage() {
   return (

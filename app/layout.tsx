@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://costpilotsai.com"),
   title: "CostPilot AI — AI Construction Cost Estimating",
   description:
     "Upload construction blueprints and get professional draft cost estimates in minutes. Material, labor, and total project costs.",

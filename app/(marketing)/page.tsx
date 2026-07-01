@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { APP_NAME, APP_TAGLINE } from "@/lib/constants";
+import { getMetadata } from "@/lib/seo";
+
+export const metadata = getMetadata({
+  title: "CostPilot AI — AI Construction Cost Estimating",
+  description:
+    "Upload construction blueprints and get professional draft cost estimates in minutes. Speed up bidding with precise material, labor, and total cost breakdowns.",
+  path: "/",
+});
 
 export default function HomePage() {
   return (

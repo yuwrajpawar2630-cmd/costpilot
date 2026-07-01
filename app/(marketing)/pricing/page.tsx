@@ -1,4 +1,12 @@
 import { PricingCards } from "@/components/marketing/pricing-cards";
+import { getMetadata } from "@/lib/seo";
+
+export const metadata = getMetadata({
+  title: "Pricing Plans — CostPilot AI",
+  description:
+    "Simple and transparent pricing for contractors and builders. Try for free with 2 estimates per month, or upgrade to bid faster and win more projects.",
+  path: "/pricing",
+});
 
 export default function PricingPage() {
   return (

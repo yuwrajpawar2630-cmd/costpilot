@@ -1,4 +1,12 @@
 import { ESTIMATE_DISCLAIMER } from "@/types";
+import { getMetadata } from "@/lib/seo";
+
+export const metadata = getMetadata({
+  title: "Terms & Conditions — CostPilot AI",
+  description:
+    "Review the Terms of Service for using CostPilot AI construction estimating platform and services.",
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (

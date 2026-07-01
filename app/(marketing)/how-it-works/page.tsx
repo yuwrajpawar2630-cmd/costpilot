@@ -1,4 +1,12 @@
 import Link from "next/link";
+import { getMetadata } from "@/lib/seo";
+
+export const metadata = getMetadata({
+  title: "How It Works — CostPilot AI",
+  description:
+    "Learn how CostPilot AI transforms blueprint PDFs into professional cost estimates in under 10 minutes using advanced AI, no complex takeoff software required.",
+  path: "/how-it-works",
+});
 
 export default function HowItWorksPage() {
   const steps = [

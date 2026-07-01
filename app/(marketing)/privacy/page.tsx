@@ -1,3 +1,12 @@
+import { getMetadata } from "@/lib/seo";
+
+export const metadata = getMetadata({
+  title: "Privacy Policy — CostPilot AI",
+  description:
+    "Read the CostPilot AI Privacy Policy to understand how we collect, use, and protect your personal information and uploaded blueprints.",
+  path: "/privacy",
+});
+
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-16 prose prose-zinc">
