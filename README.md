@@ -33,7 +33,7 @@ Demo mode works with no env vars (local storage in `.data/`).
 
 ## Stack
 
-Next.js 16 · Supabase · Inngest · OpenAI · Stripe · BuildCalculator.io API
+Next.js 16 · Supabase · Inngest · OpenAI · PayPal / Razorpay · BuildCalculator.io API
 
 ## Plans
 
